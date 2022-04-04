@@ -9,13 +9,14 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import { Chart }            from 'react-chartjs-2';
 import { chartDays } from "../config/data";
 import SelectButton from "./SelectButton";
+import { numberWithCommas } from "../components/Banner/Carousel";
 
 export default function CoinInfo({coin}) {
 
    const [historicalData, setHistoricalData] = useState();
    const [days, setDays] = useState(1);
 
-   const { currency } = CryptoState();
+   const { currency, symbol } = CryptoState();
 
    const fetchHistoricalData = async () => {
       const {data} = await axios.get(HistoricalChart(coin.id, days, currency));
@@ -32,19 +33,63 @@ export default function CoinInfo({coin}) {
          justifyContent: 'center',
          marginTop: 25,
          padding: 40,
-         [theme.breakpoints.down('md')]: {
+         [theme.breakpoints.down('sm')]: {
             width: '100%',
             marginTop: 0,
-            padding: 20,
+            padding: 10,
             paddingTop: 0,
          },
       },
       containerChart: {
          width: '100%',
+      },
+      buttonWrap: {
+         display: 'flex',
+         marginTop: 20,
+         marginBottom: 30,
+         justifyContent: 'space-around',
+         width: '100%',
+         [theme.breakpoints.down('xs')]: {
+            marginBottom: 20,
+         },
+      },
+      forecast: {
+         border: '1px solid #36E6FC',
+         borderRadius: 5,
+         padding: 10,
+         width: 'fit-content',
+         margin: 'auto',
+         [theme.breakpoints.down('xs')]: {
+            padding: '5px 10px',
+            fontSize: 13,
+            width: '100%',
+            textAlign: 'center',
+            margin: 0,
+         },
       }
    }))
 
    const classes = useStyles();
+
+   const getLastPrices = () => {
+      let arrPrices = [];
+      
+      historicalData.map((coin) => {
+         arrPrices.push(coin[1]);
+      })
+      let last = arrPrices.pop();
+      let preLast = arrPrices.pop();
+
+      let y = (last - preLast) + preLast + (last - preLast);
+
+      if (y > last) {
+         return `${numberWithCommas(y.toFixed(2))} ↗`
+      } else if (y < last) {
+         return `${numberWithCommas(y.toFixed(2))} ↘`
+      } else {
+         return `${numberWithCommas(y.toFixed(2))}`
+      }
+   }
 
    useEffect(() => {
       fetchHistoricalData();
@@ -62,7 +107,6 @@ export default function CoinInfo({coin}) {
    return (
       <ThemeProvider theme={darkTheme}>
          <div className={classes.container}>
-
             {
                !historicalData ? (
                   <CircularProgress
@@ -78,7 +122,7 @@ export default function CoinInfo({coin}) {
                               let date = new Date(coin[0]);
                               let time = `${date.getHours()}:${date.getMinutes()}`;
                            
-                              return days === 1 ? time: date.toLocaleDateString()                           
+                              return days === 1 ? time : date.toLocaleDateString()                           
                            }),
 
                            datasets:[{
@@ -96,12 +140,7 @@ export default function CoinInfo({coin}) {
                         }}
                      />
                      <div
-                        style={{
-                           display: 'flex',
-                           marginTop: 20,
-                           justifyContent: 'space-around',
-                           width: '100%',
-                        }}
+                        className={classes.buttonWrap}
                      >
                         {chartDays.map((day) => (
                            <SelectButton
@@ -113,9 +152,12 @@ export default function CoinInfo({coin}) {
                            </SelectButton>
                         ))}
                      </div>
-                  </div>)
+                     <p 
+                        className={classes.forecast}
+                     >{`Прогнозируемая цена: ${symbol} ${getLastPrices()}`} 
+                     </p>
+               </div>)
             }
-
          </div>
       </ThemeProvider>
    )

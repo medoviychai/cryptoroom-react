@@ -4,7 +4,7 @@ import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 import { Container, createTheme, LinearProgress, TableHead, Table, TableCell, TableContainer, TableRow, TextField, ThemeProvider, Typography, TableBody } from "@material-ui/core";
 import { useNavigate } from 'react-router-dom';
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core";
 import { numberWithCommas } from "./Banner/Carousel";
 import { Pagination } from "@material-ui/lab";
 
@@ -29,8 +29,6 @@ export default function CoinsTable() {
       setLoading(false);
    }
 
-   // console.log(coins);
-
    useEffect(() => {
       fetchCoins()
    }, [currency])
@@ -45,14 +43,12 @@ export default function CoinsTable() {
    })
 
    const handleSearch = () => {
-      console.log(search);
       if(!search) {
          return coins
       } else {
-         console.log(search);
          return coins.filter((coin) => {
-                  return coin.name.toLowerCase().includes(search)
-                        || coin.symbol.toLowerCase().includes(search)
+               return coin.name.toLowerCase().includes(search)
+                     || coin.symbol.toLowerCase().includes(search)
          });
       }
    };
@@ -61,7 +57,7 @@ export default function CoinsTable() {
       setSearch(e.target.value);
    }
 
-   const useStyles = makeStyles(()=> ({
+   const useStyles = makeStyles((theme)=> ({
       row: {
          backgroundColor: '#16171a',
          cursor: 'pointer',
@@ -75,6 +71,26 @@ export default function CoinsTable() {
             color: '#36E6FC',
          },
       },
+      tableTitle: {
+         [theme.breakpoints.down('sm')]: {
+            fontSize: 25,
+         },
+         [theme.breakpoints.down('xs')]: {
+            margin: '10 0',
+            fontSize: 17,
+         },
+      },
+      table: {
+         padding: '20px 20px',
+         [theme.breakpoints.down('xs')]: {
+            padding: '5px 10px'
+         },
+      },
+      tableTH: {
+         [theme.breakpoints.down('xs')]: {
+            padding: 10,
+         },
+      }
    }))
 
    const classes = useStyles();
@@ -83,8 +99,9 @@ export default function CoinsTable() {
       <ThemeProvider theme={darkTheme}>
          <Container stye={{textAlign: 'center'}}>
             <Typography
+               className={classes.tableTitle}
                variant="h4"
-               style={{margin: 18, fontFamily: 'Mulish', textAlign: 'center'}}
+               style={{margin: '18px 0px', fontFamily: 'Mulish', textAlign: 'center'}}
             >
                Криптовалюта по рыночной капитализации
             </Typography>
@@ -92,7 +109,6 @@ export default function CoinsTable() {
                label='Найти криптовалюту' 
                variant="outlined"
                style={{marginBottom: 20, width: '100%'}}
-               // onChange={(e) => setSearch(e.target.value)}
                onChange={handleInput}
                />
             <TableContainer>
@@ -101,17 +117,20 @@ export default function CoinsTable() {
                      <LinearProgress style={{background: '#36E6FC'}}></LinearProgress>
                   ) : (
                      <Table>
-                        <TableHead style={{background: '#36E6FC'}}>
+                        <TableHead 
+                           style={{background: '#36E6FC'}}
+                           >
                            <TableRow>
                               {['Криптовалюта', 'Цена', 'Изменение за 24ч', 'Рыночная капитализация'].map((head) => (
                                  <TableCell
+                                    className={classes.table}
                                     style={{
                                        color: 'black',
                                        fontWeight: '700',
                                        fontFamily: 'Mulish',
                                     }}
                                     key={head}
-                                    align={head === 'Криптовалюта' ? '' : 'right'}
+                                    align={head === 'Криптовалюта' ? 'left' : 'right'}
                                     >
                                        {head}
                                  </TableCell>
@@ -131,6 +150,7 @@ export default function CoinsTable() {
                                     className={classes.row}
                                  >
                                     <TableCell 
+                                    className={classes.tableTH}
                                        component='th' 
                                        scope='row'
                                        style={{
@@ -196,13 +216,12 @@ export default function CoinsTable() {
                   justifyContent: 'center',
                }}
                classes={{ul: classes.pagination}}
-               count={(handleSearch()?.length / 10).toFixed(0)}   
+               count={(handleSearch()?.length / 10).toFixed(0)}
                onChange={(_, value) => {
                   setPage(value);
                   window.scroll(0, 450);
                }}
             >
-               
             </Pagination>
          </Container>
       </ThemeProvider>

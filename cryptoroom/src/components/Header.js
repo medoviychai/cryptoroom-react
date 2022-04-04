@@ -19,8 +19,6 @@ export default function Header() {
 
    const {currency, setCurrency} = CryptoState()
 
-   console.log(currency);
-
    const darkTheme = createTheme({
       palette: {
          primary: {
@@ -35,7 +33,9 @@ export default function Header() {
          <AppBar color='transparent' position='static'>
             <Container>
                <Toolbar>
-                  <Typography onClick={() => navigate('/')} className={classes.title} variant='h6'>CRYPTOROOM</Typography>
+                  <Typography onClick={() => navigate('/')} className={classes.title} variant='h6'>
+                     CRYPTOROOM
+                  </Typography>
                   <Select variant='outlined' style={{
                      width: 100,
                      height: 40,

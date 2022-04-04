@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import {capitalize, Container, FormHelperText, makeStyles, Typography} from '@material-ui/core';
 import Carousel from "./Carousel";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
    banner: {
       backgroundImage: 'url(https://xakep.ru/wp-content/uploads/2017/08/135083/mesh-networks_0.jpg)',
-      // backgroundImage: 'url(https://psv4.userapi.com/c532036/u136200800/docs/d19/b7a9b9f07512/e35h9b4.png?extra=Y6Z5ngHfQbr8eQnQrUfQBZEveDrUWF4D05bWJvSz8zFR0rrcUo6BKkpxUTSyR7SELMJIW6y8ZJ62Jpy53K3Iw03ENtIKgEYP8aYKCz5OYH33WJzvqkbCmj6DYZ7JDDJy9-BQRSlOoc23mdHdaMeri5fcZA)',
-      // backgroundImage: 'url(https://oir.mobi/uploads/posts/2021-03/1616525615_5-p-temno-sinii-fon-5.jpg)',
-      // backgroundImage: 'url(https://oir.mobi/uploads/posts/2021-03/1616564085_5-p-fon-dlya-yutub-kanala-6.jpg)',
-
       backgroundSize: 'cover',
       backgroundPosition: 'center',
    },
@@ -25,10 +21,13 @@ const useStyles = makeStyles(() => ({
       flexDirection: 'column',
       justifyContent: 'center',
       textAlign: 'center',
+   },
+   bannerTitle: {
+      [theme.breakpoints.down('sm')]: {
+         fontSize: 50,
+      },
    }
 }));
-
-
 
 export default function Banner() {
    const classes = useStyles();
@@ -37,11 +36,12 @@ export default function Banner() {
          <Container className={classes.bannerContent}>
             <div className={classes.tagLine}>
                <Typography
+                  className={classes.bannerTitle}
                   variant='h2'
                   style={{
                      fontWeight: 'bold',
                      marginBottom: 15,
-                     fontFamily: 'Nova Mono'
+                     fontFamily: 'Nova Mono',
                   }}>
                      CRYPTOROOM
                </Typography>

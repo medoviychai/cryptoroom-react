@@ -8,7 +8,7 @@ import AliceCarousel from 'react-alice-carousel';
 import { Link } from "react-router-dom";
 import CryptoContext from "../../CryptoContext";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
    carousel: {
       height: '50%',
       display: 'flex',
@@ -41,8 +41,6 @@ export default function Carousel() {
       
       setTrending(data);
    };
-
-   console.log(trending);
 
    useEffect(() => {
       fetchTrendingCoins();
@@ -78,7 +76,6 @@ export default function Carousel() {
                <span style={{fontSize: 22, fontWeight: 500}}>
                   {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
                </span>
-            
          </Link>
       )
    })

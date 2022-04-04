@@ -3,7 +3,7 @@ import React from "react";
 
 export default function SelectButton({children, selected, onClick}) {
 
-   const useStyles = makeStyles({
+   const useStyles = makeStyles((theme) => ({
       selectButton: {
          border: '1px solid #36E6FC',
          borderRadius: 5,
@@ -18,8 +18,12 @@ export default function SelectButton({children, selected, onClick}) {
             backgroundColor: '#36E6FC',
             color: 'black',
          },
-      }
-   });
+         [theme.breakpoints.down('xs')]: {
+            padding: '5px 10px',
+            fontSize: 13,
+         },
+      },
+   }));
 
    const classes = useStyles();
 

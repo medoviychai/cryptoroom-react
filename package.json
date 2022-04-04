@@ -2,5 +2,24 @@
   "dependencies": {
     "buffer": "^6.0.3",
     "react-html-parser": "^2.0.2"
-  }
+  },
+  "name": "cryptoroom-react",
+  "description": "You can find prices, its changes and market capitalization in USD or RUB of the cryptocurrencies you are interested in.\r To view more detailed information, you can go to the page of a single cryptocurrency, read a brief description of it and see on the chart the price change for the last 24 hours, a month, 3 months and a year.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medoviychai/cryptoroom-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/medoviychai/cryptoroom-react/issues"
+  },
+  "homepage": "https://github.com/medoviychai/cryptoroom-react#readme"
 }

@@ -103,10 +103,10 @@ export default function CoinsTable() {
                variant="h4"
                style={{margin: '18px 0px', fontFamily: 'Mulish', textAlign: 'center'}}
             >
-               Криптовалюта по рыночной капитализации
+               Cryptocurrency Prices by Market Cap
             </Typography>
             <TextField 
-               label='Найти криптовалюту' 
+               label='Search For a Crypto Currency' 
                variant="outlined"
                style={{marginBottom: 20, width: '100%'}}
                onChange={handleInput}
@@ -121,7 +121,7 @@ export default function CoinsTable() {
                            style={{background: '#36E6FC'}}
                            >
                            <TableRow>
-                              {['Криптовалюта', 'Цена', 'Изменение за 24ч', 'Рыночная капитализация'].map((head) => (
+                              {['Coin', 'Price', '24h Change', 'Market Cap'].map((head) => (
                                  <TableCell
                                     className={classes.table}
                                     style={{
@@ -130,7 +130,7 @@ export default function CoinsTable() {
                                        fontFamily: 'Mulish',
                                     }}
                                     key={head}
-                                    align={head === 'Криптовалюта' ? 'left' : 'right'}
+                                    align={head === 'Coin' ? 'left' : 'right'}
                                     >
                                        {head}
                                  </TableCell>

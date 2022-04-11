@@ -118,7 +118,7 @@ export default function CoinPage() {
             <div className={classes.marketData}>
                <span style={{display: 'flex'}}>
                   <Typography variant="h6" className={classes.heading}>
-                     Ранг:
+                     Rank:
                   </Typography>
                   &nbsp; &nbsp;
                   <Typography variant="h6" className={classes.value} style={{fontFamily: 'Mulish'}}>
@@ -127,7 +127,7 @@ export default function CoinPage() {
                </span>
                <span style={{display: 'flex'}}>
                   <Typography variant="h6" className={classes.heading}>
-                     Текущая Цена:
+                     Current Price:
                   </Typography>
                   &nbsp; &nbsp;
                   <Typography variant="h5" className={classes.value} style={{fontFamily: 'Mulish'}}>
@@ -137,7 +137,7 @@ export default function CoinPage() {
                </span>
                <span style={{display: 'flex'}}>
                   <Typography variant="h6" className={classes.heading}>
-                     Рыночная капитализация:
+                     Market Cap:
                   </Typography>
                   &nbsp; &nbsp;
                   <Typography variant="h6" className={classes.value} style={{fontFamily: 'Mulish'}}>

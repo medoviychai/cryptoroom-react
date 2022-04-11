@@ -53,7 +53,7 @@ export default function Banner() {
                      textTransform: "capitalize",
                      fontFamily: 'Mulish',
                   }}>
-                     Найдите всю интересующую вас информацию о предпочитаемой криптовалюте
+                     Get All The Info Regarding Your Favorite Crypto Currency
                </Typography>
             </div>
             <Carousel/>

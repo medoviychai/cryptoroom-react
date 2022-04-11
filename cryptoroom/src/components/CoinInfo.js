@@ -127,7 +127,7 @@ export default function CoinInfo({coin}) {
 
                            datasets:[{
                               data: historicalData.map((coin) => coin[1]),
-                              label: `Цена (Последние ${days} Дней в ${currency})`,
+                              label: `Price (Past ${days} Days in ${currency})`,
                               borderColor: '#36E6FC'
                            }],
                         }}
@@ -154,7 +154,7 @@ export default function CoinInfo({coin}) {
                      </div>
                      <p 
                         className={classes.forecast}
-                     >{`Прогнозируемая цена: ${symbol} ${getLastPrices()}`} 
+                     >{`Projected Price: ${symbol} ${getLastPrices()}`} 
                      </p>
                </div>)
             }

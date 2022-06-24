@@ -9,3 +9,8 @@ To view more detailed information, you can go to the page of a single cryptocurr
 - React JS
 - Material UI
 - Chart JS
+
+## Demo
+
+https://user-images.githubusercontent.com/90955335/175515479-e403bca6-ed53-4cd3-8732-b51b7e7fa400.mp4
+
